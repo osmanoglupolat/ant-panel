@@ -1,0 +1,17 @@
+body {
+  @apply overscroll-none bg-transparent;
+}
+
+:root {
+  --font-sans: var(--font-inter);
+  --header-height: calc(var(--spacing) * 12 + 1px);
+}
+
+/* Theme imports */
+@import "./theme/default.css";
+@import "./theme/claude.css";
+@import "./theme/violet-bloom.css";
+@import "./theme/twitter.css";
+@import "./theme/amber-minimal.css";
+@import "./theme/monospaced.css";
+@import "./theme/bold-tech.css";

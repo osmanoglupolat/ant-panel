@@ -20,10 +20,6 @@ export function ThemeSelector() {
     [setActiveTheme]
   );
 
-  const currentThemeLabel =
-    availableThemes.find((theme) => theme.value === activeTheme)?.label ||
-    "Default";
-
   return (
     <Select value={activeTheme} onValueChange={handleThemeChange}>
       <SelectTrigger className="w-[180px]">
@@ -39,4 +35,3 @@ export function ThemeSelector() {
     </Select>
   );
 }
-

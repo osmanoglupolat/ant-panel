@@ -7,10 +7,13 @@ const DEFAULT_THEME = "default";
 const THEME_STORAGE_KEY = "app-theme";
 
 export const AVAILABLE_THEMES = [
-  { value: "default", label: "Default" },
-  { value: "claude", label: "Claude" },
-  { value: "violet-bloom", label: "Violet Bloom" },
-  { value: "twitter", label: "Twitter" },
+  { value: "default", label: "Default", type: "default" },
+  { value: "amber-minimal", label: "Amber Minimal", type: "default" },
+  { value: "bold-tech", label: "Bold Tech", type: "bold-tech" },
+  { value: "claude", label: "Claude", type: "default" },
+  { value: "twitter", label: "Twitter", type: "default" },
+  { value: "violet-bloom", label: "Violet Bloom", type: "default" },
+  { value: "monospaced", label: "Mono", type: "monospaced" },
 ] as const;
 
 type ThemeContextType = {
