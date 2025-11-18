@@ -1,8 +1,11 @@
+import { Metadata } from "next";
+import Home from "@/components/features/home";
 
-export default function Home() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Home",
+};
+
+export default function HomePage() {
+  return <Home />;
 }
