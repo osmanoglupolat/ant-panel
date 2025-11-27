@@ -91,11 +91,10 @@ export const Modal: React.FC<ModalProps> = ({
         wrapperClassName
       )}
     >
-      <div className="closeButton dark:bg-sidebar sticky top-0 z-10 flex w-full items-center bg-white py-4">
+      <div className="closeButton dark:bg-sidebar sticky top-0 z-10 flex w-full items-center bg-white py-4 pr-2">
         <div className="font-medium">{header}</div>
         <SheetClose asChild>
           <Button
-            // className="ml-auto bg-border rounded-full w-8 h-8 p-2 text-gray-500 hover:bg-border/80 hover:text-gray-700 dark:bg-transparent dark:hover:bg-transparent"
             variant="secondary"
             size="icon"
             type="button"

@@ -8,11 +8,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  ThemeSelector,
-  ThemeToggle,
-} from "@/components/layouts/theme-switcher";
-import SearchInput from "../searchInput";
+import SearchInput from "@/components/layouts/searchInput";
+import { ThemeModal } from "@/components/layouts/theme-switcher/theme-modal";
 
 export const Header = () => {
   return (
@@ -24,8 +21,7 @@ export const Header = () => {
       />
       <SearchInput />
       <div className="flex items-center gap-1 ml-auto">
-        <ThemeToggle />
-        <ThemeSelector />
+        <ThemeModal />
       </div>
       {/* <Breadcrumb>
           <BreadcrumbList>

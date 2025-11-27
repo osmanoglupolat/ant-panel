@@ -38,7 +38,11 @@ export function ThemeToggle() {
       className="group/toggle size-8"
       onClick={handleThemeToggle}
     >
-      {resolvedTheme === "dark" ? <IconBrightness /> : <IconMoon />}
+      {resolvedTheme === "dark" ? (
+        <IconBrightness className="size-4.5" />
+      ) : (
+        <IconMoon className="size-4.5" />
+      )}
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
