@@ -12,7 +12,11 @@ const Home = () => {
       <Button variant="outline" onClick={() => setOpen(true)}>
         Open Modal
       </Button>
-      <Modal isOpen={open} onClose={() => setOpen(false)}>
+      <Modal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        header="Home Page Modal"
+      >
         <div>
           <h2>Home</h2>
         </div>

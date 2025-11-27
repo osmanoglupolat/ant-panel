@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useRef } from "react";
+import { IconX } from "@tabler/icons-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   ResizablePanel,
   ResizablePanelGroup,
   ResizableHandle,
-} from "../ui/resizable";
-import { Button } from "@/components/ui/button";
-import { IconGripVertical, IconX } from "@tabler/icons-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/resizable";
 import {
   Sheet,
   SheetClose,
@@ -46,29 +46,30 @@ export const Modal: React.FC<ModalProps> = ({
   resizable = true,
   defaultWidth = 480,
   minWidth = 480,
-  maxWidth = 1350,
+  maxWidth = 1400,
 }) => {
-  const drawerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  const innerWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 
   const defaultPercentage = React.useMemo(() => {
-    const percentage = (defaultWidth / window?.innerWidth) * 100;
+    const percentage = (defaultWidth / innerWidth) * 100;
     return Math.min(Math.max(percentage, 30), 80);
-  }, [defaultWidth, window?.innerWidth]);
+  }, [defaultWidth, innerWidth]);
 
   const minPercentage = React.useMemo(
-    () => (minWidth / window?.innerWidth) * 100,
-    [minWidth, window?.innerWidth]
+    () => (minWidth / innerWidth) * 100,
+    [minWidth, innerWidth]
   );
   const maxPercentage = React.useMemo(
-    () => (maxWidth / window?.innerWidth) * 100,
-    [maxWidth, window?.innerWidth]
+    () => (maxWidth / innerWidth) * 100,
+    [maxWidth, innerWidth]
   );
 
   React.useEffect(() => {
     if (isOpen) {
-      const scrollbarWidth =
-        window?.innerWidth - document.documentElement.clientWidth;
+      const scrollbarWidth = innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
@@ -90,14 +91,17 @@ export const Modal: React.FC<ModalProps> = ({
         wrapperClassName
       )}
     >
-      <div className="closeButton dark:bg-sidebar sticky top-0 z-10 flex w-full items-center bg-white py-4 pl-4">
-        <div className="font-proximanovaSemibold text-base">{header}</div>
+      <div className="closeButton dark:bg-sidebar sticky top-0 z-10 flex w-full items-center bg-white py-4">
+        <div className="font-medium">{header}</div>
         <SheetClose asChild>
           <Button
-            className="ml-auto bg-transparent text-gray-500 hover:bg-transparent hover:text-gray-700 dark:bg-transparent dark:hover:bg-transparent"
+            // className="ml-auto bg-border rounded-full w-8 h-8 p-2 text-gray-500 hover:bg-border/80 hover:text-gray-700 dark:bg-transparent dark:hover:bg-transparent"
+            variant="secondary"
+            size="icon"
             type="button"
+            className="ml-auto"
           >
-            <IconX className="h-5 w-5" />
+            <IconX className="size-5" />
           </Button>
         </SheetClose>
       </div>
