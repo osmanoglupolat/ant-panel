@@ -31,43 +31,49 @@ This roadmap provides a detailed, week-by-week breakdown of development tasks or
 ### Week 1: Authentication & Dashboard Foundation
 
 #### Day 1-2: Authentication System
-- [ ] Create `/app/login/page.tsx` with professional design
-  - [ ] Login form with validation
-  - [ ] Email/password fields
-  - [ ] Remember me checkbox
-  - [ ] Forgot password link
-  - [ ] Error handling UI
-  - [ ] Loading states
-  - [ ] Route: `/login` (public access)
+- [x] Create `/app/login/page.tsx` with professional design
+  - [x] Login form with validation
+  - [x] Email/password fields
+  - [x] Remember me checkbox
+  - [x] Forgot password link (placeholder link for now)
+  - [x] Error handling UI
+  - [x] Loading states
+  - [x] Route: `/login` (public access)
   
-- [ ] Create authentication utilities
-  - [ ] `lib/auth/mock-auth.ts` - Mock authentication service
-  - [ ] `lib/auth/auth-context.tsx` - Auth context provider
-  - [ ] `lib/auth/auth-types.ts` - TypeScript types
-  - [ ] `components/auth/protected-route.tsx` - Route wrapper
-  - [ ] Redirect logic for authenticated/unauthenticated users
+- [x] Build forgot password request page
+  - [x] `/forgot-password` route with matching layout
+  - [x] Email capture + validation
+  - [x] Success/confirmation state
+  - [x] Navigation back to login
+  
+- [x] Create authentication utilities
+  - [x] `lib/auth/mock-auth.ts` - Mock authentication service
+  - [x] `lib/auth/auth-context.tsx` - Auth context provider
+  - [x] `lib/auth/auth-types.ts` - TypeScript types
+  - [x] `components/auth/protected-route.tsx` - Route wrapper
+  - [x] Redirect logic for authenticated/unauthenticated users (remember last path)
 
-#### Day 3-4: Dashboard Page Enhancement
-- [ ] Create comprehensive dashboard layout
-  - [ ] Statistics cards (4-6 cards)
-  - [ ] Chart containers (prepare for chart library)
-  - [ ] Recent activity section
-  - [ ] Quick actions panel
-  - [ ] Responsive grid system
+- #### Day 3-4: Dashboard Page Enhancement
+- [x] Create comprehensive dashboard layout
+  - [x] Statistics cards (4-card grid with trend indicators)
+  - [x] Chart containers (Recharts area chart scaffold)
+  - [x] Recent activity section
+  - [x] Quick actions panel
+  - [x] Responsive grid system
 
-- [ ] Install and configure chart library
-  - [ ] Research: Recharts vs Chart.js vs ApexCharts
-  - [ ] Install chosen library
-  - [ ] Create chart components wrapper
-  - [ ] Add sample charts (Line, Bar, Pie, Area)
+- [x] Install and configure chart library
+  - [x] Research: selected Recharts for first release
+  - [x] Install chosen library
+  - [x] Create chart components wrapper
+  - [ ] Add sample charts (Line, Bar, Pie, Area) *(area chart done; remaining types pending)*
 
 #### Day 5: Data Mocking Structure
-- [ ] Create `/lib/mocks/` directory structure
+- [x] Create `/lib/mocks/` directory structure
 - [ ] Create mock data generators
+  - [x] `lib/mocks/dashboard.ts` - Dashboard statistics & activity data
   - [ ] `lib/mocks/users.ts` - User mock data
-  - [ ] `lib/mocks/dashboard.ts` - Dashboard statistics
   - [ ] `lib/mocks/charts.ts` - Chart data generators
-  - [ ] `lib/mocks/activities.ts` - Activity feed data
+  - [ ] `lib/mocks/activities.ts` - Activity feed data *(covered in dashboard mocks, expand later if needed)*
 - [ ] Remove all hardcoded data from components (sidebar, nav-items, etc.)
 - [ ] Implement data service layer pattern
 - [ ] Create TypeScript interfaces for mock data

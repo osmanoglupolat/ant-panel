@@ -11,6 +11,13 @@
 
 This index provides quick access to all project documentation related to transforming this admin panel into a market-ready product for Envato Market and ThemeForest platforms.
 
+### Progress Snapshot (Week 1 Update)
+- ✅ Login experience shipped (`/login` page with hero, validation, remember-me, autofill demo credentials)
+- ✅ Auth infrastructure in place (mock service, context, persistent sessions, protected dashboard routes, logout UX)
+- ✅ Forgot-password request flow live (`/forgot-password` with confirmation state)
+- ✅ Dashboard overview page live (stats cards, Recharts area chart, activity feed, quick actions, mock data service)
+- ⏭️ Next focus: Additional chart types + notifications/custom layout, then move to Week 2 settings pages
+
 ---
 
 ## 🎯 Main Documents

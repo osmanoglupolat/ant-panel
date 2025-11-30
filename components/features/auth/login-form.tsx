@@ -214,7 +214,7 @@ export function LoginForm() {
           <span>Remember me</span>
         </label>
         <Link
-          href="#"
+          href="/forgot-password"
           className="text-primary hover:text-primary/80 font-medium underline-offset-4 transition-colors hover:underline"
         >
           Forgot password?
@@ -234,11 +234,17 @@ export function LoginForm() {
 
       <p className="text-center text-sm text-muted-foreground">
         By continuing, you agree to our{" "}
-        <Link href="#" className="text-primary underline-offset-4 hover:underline">
+        <Link
+          href="/forgot-password"
+          className="text-primary underline-offset-4 hover:underline"
+        >
           Terms
         </Link>{" "}
         and{" "}
-        <Link href="#" className="text-primary underline-offset-4 hover:underline">
+        <Link
+          href="/forgot-password"
+          className="text-primary underline-offset-4 hover:underline"
+        >
           Privacy Policy
         </Link>
         .
