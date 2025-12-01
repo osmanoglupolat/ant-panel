@@ -19,11 +19,11 @@ export default function DashboardLayout({
   return (
     <ProtectedRoute>
       <KBar>
-        <SidebarProvider>
+        <SidebarProvider className="bg-sidebar">
           <AppSidebar />
-          <SidebarInset>
+          <SidebarInset className="my-3 mr-3 rounded-xl shadow-md overflow-hidden">
             <Header />
-            <main className="p-4">{children}</main>
+            <section className="p-4 bg-background">{children}</section>
           </SidebarInset>
         </SidebarProvider>
       </KBar>
