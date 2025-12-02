@@ -33,9 +33,9 @@ export function ThemeToggle() {
 
   return (
     <Button
-      variant="secondary"
+      variant="ghost"
       size="icon"
-      className="group/toggle size-8"
+      className="group/toggle size-8 text-muted-foreground"
       onClick={handleThemeToggle}
     >
       {resolvedTheme === "dark" ? (

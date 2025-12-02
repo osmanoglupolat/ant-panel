@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { useCallback } from "react";
 import { cn } from "@/lib/utils";
+import { IconCheck } from "@tabler/icons-react";
 
 export function ThemeSelector({
   type = "list",
@@ -43,15 +44,21 @@ export function ThemeSelector({
     );
   }
   return (
-    <div className="flex flex-col gap-0.5">
+    <div className="flex flex-col">
       {availableThemes.map((theme) => (
         <Button
           key={theme.value}
           variant="ghost"
           onClick={() => handleThemeChange(theme.value)}
-          className={cn("justify-start text-sm hover:pl-9", activeTheme === theme.value && "bg-accent pl-9")}
+          className="justify-between text-sm rounded-none px-4 w-full font-light"
         >
           {theme.label}
+          <IconCheck
+            className={cn(
+              "size-4 opacity-0 transition-opacity duration-200",
+              activeTheme === theme.value && "opacity-100"
+            )}
+          />
         </Button>
       ))}
     </div>

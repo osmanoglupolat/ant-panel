@@ -6,7 +6,13 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 const DEFAULT_THEME = "default";
 const THEME_STORAGE_KEY = "app-theme";
 
-export const AVAILABLE_THEMES = [
+export interface ITheme {
+  value: string;
+  label: string;
+  type: string;
+}
+
+export const AVAILABLE_THEMES: ITheme[] = [
   { value: "default", label: "Default", type: "default" },
   { value: "amber-minimal", label: "Amber Minimal", type: "default" },
   { value: "bold-tech", label: "Bold Tech", type: "bold-tech" },
@@ -14,12 +20,13 @@ export const AVAILABLE_THEMES = [
   { value: "twitter", label: "Twitter", type: "default" },
   { value: "violet-bloom", label: "Violet Bloom", type: "default" },
   { value: "monospaced", label: "Mono", type: "monospaced" },
-] as const;
+];
 
 type ThemeContextType = {
   activeTheme: string;
   setActiveTheme: (theme: string) => void;
-  availableThemes: typeof AVAILABLE_THEMES;
+  availableThemes: ITheme[];
+  filterAvailableThemes: (search: string) => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -30,6 +37,8 @@ export default function ThemeProvider({
   children: React.ReactNode;
 }) {
   const [activeTheme, setActiveTheme] = useState<string>(DEFAULT_THEME);
+  const [availableThemes, setAvailableThemes] =
+    useState<ITheme[]>(AVAILABLE_THEMES);
   const [mounted, setMounted] = useState(false);
 
   // Load theme from localStorage on mount
@@ -65,12 +74,20 @@ export default function ThemeProvider({
     }
   };
 
+  const filterAvailableThemes = (search: string) => {
+    const filteredThemes = AVAILABLE_THEMES.filter((theme) =>
+      theme.label.toLowerCase().includes(search.toLowerCase())
+    );
+    setAvailableThemes(filteredThemes);
+  };
+
   return (
     <ThemeContext.Provider
       value={{
         activeTheme,
         setActiveTheme: handleSetActiveTheme,
-        availableThemes: AVAILABLE_THEMES,
+        availableThemes,
+        filterAvailableThemes,
       }}
     >
       <NextThemesProvider

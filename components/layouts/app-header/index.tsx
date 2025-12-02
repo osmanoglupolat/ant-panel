@@ -1,8 +1,6 @@
-import { Bell } from "lucide-react";
-
 import { NotificationsPopover } from "@/components/layouts/notifications-popover";
 import SearchInput from "@/components/layouts/searchInput";
-import { ThemeModal } from "@/components/layouts/theme-switcher/theme-modal";
+import { ThemeController } from "@/components/layouts/theme-switcher/theme-controller";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -25,7 +23,7 @@ export const Header = () => {
       <SearchInput />
       <div className="flex items-center gap-1 ml-auto">
         <NotificationsPopover />
-        <ThemeModal />
+        <ThemeController />
       </div>
       {/* <Breadcrumb>
           <BreadcrumbList>

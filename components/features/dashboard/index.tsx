@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo, useState } from "react";
+
 import { dashboardData } from "@/lib/mocks/dashboard";
 
 import { ActivityFeed } from "./activity-feed";
@@ -10,6 +12,13 @@ import { NotificationsPanel } from "./notifications-panel";
 import { QuickActions } from "./quick-actions";
 import { RevenueChart } from "./revenue-chart";
 import { StatCards } from "./stat-cards";
+import { WidgetController, WidgetToggle } from "./widget-controller";
+
+const DEFAULT_WIDGETS: WidgetToggle[] = [
+  { id: "activity", label: "Activity feed", enabled: true },
+  { id: "quick-actions", label: "Quick actions", enabled: true },
+  { id: "notifications", label: "Notifications", enabled: true },
+];
 
 export function DashboardOverview() {
   const {
@@ -20,6 +29,26 @@ export function DashboardOverview() {
     activity,
     quickActions,
   } = dashboardData;
+
+  const [widgets, setWidgets] = useState<WidgetToggle[]>(() =>
+    DEFAULT_WIDGETS.map((widget) => ({ ...widget }))
+  );
+
+  const handleWidgetChange = (next: WidgetToggle[]) => setWidgets(next);
+  const handleWidgetReset = () =>
+    setWidgets(DEFAULT_WIDGETS.map((widget) => ({ ...widget })));
+
+  const widgetControllerProps = useMemo(
+    () => ({
+      widgets,
+      onChange: handleWidgetChange,
+      onReset: handleWidgetReset,
+    }),
+    [widgets]
+  );
+
+  const isEnabled = (id: string) =>
+    widgets.find((widget) => widget.id === id)?.enabled ?? false;
 
   return (
     <div className="space-y-6">
@@ -50,10 +79,20 @@ export function DashboardOverview() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
-          <ActivityFeed items={activity} />
-          <QuickActions actions={quickActions} />
+          {widgets
+            .filter((widget) => widget.id !== "notifications" && widget.enabled)
+            .map((widget) =>
+              widget.id === "activity" ? (
+                <ActivityFeed key={widget.id} items={activity} />
+              ) : (
+                <QuickActions key={widget.id} actions={quickActions} />
+              )
+            )}
         </div>
-        <NotificationsPanel />
+        <div className="space-y-4">
+          <WidgetController {...widgetControllerProps} />
+          {isEnabled("notifications") && <NotificationsPanel />}
+        </div>
       </div>
     </div>
   );
