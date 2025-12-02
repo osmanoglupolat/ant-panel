@@ -13,6 +13,16 @@ export type RevenuePoint = {
   revenue: number;
 };
 
+export type ChannelBreakdown = {
+  channel: string;
+  amount: number;
+};
+
+export type SegmentShare = {
+  segment: string;
+  value: number;
+};
+
 export type ActivityItem = {
   id: string;
   title: string;
@@ -31,9 +41,13 @@ export type QuickAction = {
 export type DashboardData = {
   stats: StatCard[];
   revenueTrend: RevenuePoint[];
+  channelBreakdown: ChannelBreakdown[];
+  segmentShare: SegmentShare[];
   activity: ActivityItem[];
   quickActions: QuickAction[];
 };
+
+
 
 
 

@@ -1,3 +1,8 @@
+import { Bell } from "lucide-react";
+
+import { NotificationsPopover } from "@/components/layouts/notifications-popover";
+import SearchInput from "@/components/layouts/searchInput";
+import { ThemeModal } from "@/components/layouts/theme-switcher/theme-modal";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,8 +13,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import SearchInput from "@/components/layouts/searchInput";
-import { ThemeModal } from "@/components/layouts/theme-switcher/theme-modal";
 
 export const Header = () => {
   return (
@@ -21,6 +24,7 @@ export const Header = () => {
       />
       <SearchInput />
       <div className="flex items-center gap-1 ml-auto">
+        <NotificationsPopover />
         <ThemeModal />
       </div>
       {/* <Breadcrumb>

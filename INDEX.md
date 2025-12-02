@@ -15,8 +15,8 @@ This index provides quick access to all project documentation related to transfo
 - ✅ Login experience shipped (`/login` page with hero, validation, remember-me, autofill demo credentials)
 - ✅ Auth infrastructure in place (mock service, context, persistent sessions, protected dashboard routes, logout UX)
 - ✅ Forgot-password request flow live (`/forgot-password` with confirmation state)
-- ✅ Dashboard overview page live (stats cards, Recharts area chart, activity feed, quick actions, mock data service)
-- ⏭️ Next focus: Additional chart types + notifications/custom layout, then move to Week 2 settings pages
+- ✅ Dashboard overview page live (stats cards, Recharts area/line/bar/pie charts, activity feed, quick actions, notifications, mock data service)
+- ⏭️ Next focus: Customizable widget layout + Week 2 settings pages
 
 ---
 

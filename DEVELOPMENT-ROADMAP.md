@@ -56,16 +56,17 @@ This roadmap provides a detailed, week-by-week breakdown of development tasks or
 - #### Day 3-4: Dashboard Page Enhancement
 - [x] Create comprehensive dashboard layout
   - [x] Statistics cards (4-card grid with trend indicators)
-  - [x] Chart containers (Recharts area chart scaffold)
+  - [x] Chart containers (Recharts area/line/bar/pie scaffold)
   - [x] Recent activity section
   - [x] Quick actions panel
+  - [x] Notifications panel
   - [x] Responsive grid system
 
 - [x] Install and configure chart library
   - [x] Research: selected Recharts for first release
   - [x] Install chosen library
   - [x] Create chart components wrapper
-  - [ ] Add sample charts (Line, Bar, Pie, Area) *(area chart done; remaining types pending)*
+  - [x] Add sample charts (Area, Line, Bar, Pie variants)
 
 #### Day 5: Data Mocking Structure
 - [x] Create `/lib/mocks/` directory structure

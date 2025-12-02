@@ -1,8 +1,10 @@
 import type {
   ActivityItem,
+  ChannelBreakdown,
   DashboardData,
   QuickAction,
   RevenuePoint,
+  SegmentShare,
   StatCard,
 } from "@/lib/types/dashboard";
 
@@ -45,6 +47,20 @@ const revenueTrend: RevenuePoint[] = [
   { date: "May", revenue: 95_100 },
   { date: "Jun", revenue: 102_300 },
   { date: "Jul", revenue: 110_800 },
+];
+
+const channelBreakdown: ChannelBreakdown[] = [
+  { channel: "Self-serve", amount: 56000 },
+  { channel: "Sales-assisted", amount: 32000 },
+  { channel: "Enterprise", amount: 22000 },
+  { channel: "Partners", amount: 18500 },
+];
+
+const segmentShare: SegmentShare[] = [
+  { segment: "Fintech", value: 32 },
+  { segment: "Healthcare", value: 22 },
+  { segment: "Retail", value: 18 },
+  { segment: "SaaS", value: 28 },
 ];
 
 const activity: ActivityItem[] = [
@@ -102,9 +118,13 @@ const quickActions: QuickAction[] = [
 export const dashboardData: DashboardData = {
   stats,
   revenueTrend,
+  channelBreakdown,
+  segmentShare,
   activity,
   quickActions,
 };
+
+
 
 
 

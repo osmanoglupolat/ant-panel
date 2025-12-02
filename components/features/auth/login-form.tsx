@@ -234,20 +234,9 @@ export function LoginForm() {
 
       <p className="text-center text-sm text-muted-foreground">
         By continuing, you agree to our{" "}
-        <Link
-          href="/forgot-password"
-          className="text-primary underline-offset-4 hover:underline"
-        >
-          Terms
-        </Link>{" "}
-        and{" "}
-        <Link
-          href="/forgot-password"
-          className="text-primary underline-offset-4 hover:underline"
-        >
-          Privacy Policy
-        </Link>
-        .
+        By continuing, you agree to our{" "}
+        <span className="text-primary font-medium">Terms</span> and{" "}
+        <span className="text-primary font-medium">Privacy Policy</span>.
       </p>
     </form>
   );

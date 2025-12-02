@@ -3,12 +3,23 @@
 import { dashboardData } from "@/lib/mocks/dashboard";
 
 import { ActivityFeed } from "./activity-feed";
+import { ChannelBarChart } from "./charts/bar-chart";
+import { RevenueLineChart } from "./charts/line-chart";
+import { SegmentPieChart } from "./charts/pie-chart";
+import { NotificationsPanel } from "./notifications-panel";
 import { QuickActions } from "./quick-actions";
 import { RevenueChart } from "./revenue-chart";
 import { StatCards } from "./stat-cards";
 
 export function DashboardOverview() {
-  const { stats, revenueTrend, activity, quickActions } = dashboardData;
+  const {
+    stats,
+    revenueTrend,
+    channelBreakdown,
+    segmentShare,
+    activity,
+    quickActions,
+  } = dashboardData;
 
   return (
     <div className="space-y-6">
@@ -27,17 +38,28 @@ export function DashboardOverview() {
       <StatCards items={stats} />
 
       <div className="grid gap-4 lg:grid-cols-5">
-        <div className="lg:col-span-3">
+        <div className="space-y-4 lg:col-span-3">
           <RevenueChart data={revenueTrend} />
+          <RevenueLineChart data={revenueTrend} />
         </div>
+        <div className="space-y-4 lg:col-span-2">
+          <ChannelBarChart data={channelBreakdown} />
+          <SegmentPieChart data={segmentShare} />
+        </div>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <ActivityFeed items={activity} />
           <QuickActions actions={quickActions} />
         </div>
+        <NotificationsPanel />
       </div>
     </div>
   );
 }
+
+
 
 
 
