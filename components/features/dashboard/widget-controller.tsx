@@ -18,6 +18,7 @@ import {
 import { GripVertical, RefreshCw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export type WidgetToggle = {
@@ -59,19 +60,18 @@ export function WidgetController({
   };
 
   return (
-    <section className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <header className="flex items-center justify-between pb-4">
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div>
-          <p className="text-sm text-muted-foreground">Customize</p>
-          <h2 className="text-lg font-semibold text-foreground">
-            Control your workspace
-          </h2>
+          <CardDescription>Customize</CardDescription>
+          <CardTitle className="text-lg">Control your workspace</CardTitle>
         </div>
         <Button variant="ghost" size="sm" onClick={onReset}>
           <RefreshCw className="mr-2 h-4 w-4" />
           Reset
         </Button>
-      </header>
+      </CardHeader>
+      <CardContent className="pt-6">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -92,7 +92,8 @@ export function WidgetController({
           </div>
         </SortableContext>
       </DndContext>
-    </section>
+      </CardContent>
+    </Card>
   );
 }
 

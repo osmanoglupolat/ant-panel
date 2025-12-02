@@ -59,12 +59,16 @@ export function DashboardOverview() {
             Executive overview
           </h1>
           <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-            Today • {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+            Today •{" "}
+            {new Date().toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
           </span>
         </div>
       </div>
 
-      <StatCards items={stats} />
+      <StatCards />
 
       <div className="grid gap-4 lg:grid-cols-5">
         <div className="space-y-4 lg:col-span-3">
@@ -97,8 +101,3 @@ export function DashboardOverview() {
     </div>
   );
 }
-
-
-
-
-

@@ -10,6 +10,13 @@ import {
 } from "recharts";
 
 import type { ChannelBreakdown } from "@/lib/types/dashboard";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type BarChartProps = {
   data: ChannelBreakdown[];
@@ -17,14 +24,14 @@ type BarChartProps = {
 
 export function ChannelBarChart({ data }: BarChartProps) {
   return (
-    <div className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <header className="pb-3">
-        <p className="text-sm text-muted-foreground">Channel mix</p>
-        <h3 className="text-lg font-semibold text-foreground">
+    <Card>
+      <CardHeader className="pb-0">
+        <CardDescription>Channel mix</CardDescription>
+        <CardTitle className="text-lg">
           Contribution by acquisition
-        </h3>
-      </header>
-      <div className="h-56">
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="h-56 pt-4">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <XAxis dataKey="channel" axisLine={false} tickLine={false} />
@@ -45,8 +52,8 @@ export function ChannelBarChart({ data }: BarChartProps) {
             <Bar dataKey="amount" fill="#0ea5e9" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 

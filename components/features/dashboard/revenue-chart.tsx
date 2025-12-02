@@ -10,6 +10,13 @@ import {
 } from "recharts";
 
 import type { RevenuePoint } from "@/lib/types/dashboard";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type RevenueChartProps = {
   data: RevenuePoint[];
@@ -25,19 +32,20 @@ const currencyFormatter = (value: number) =>
 
 export function RevenueChart({ data }: RevenueChartProps) {
   return (
-    <section className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <div className="flex items-center justify-between pb-4">
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div>
-          <p className="text-sm text-muted-foreground">Revenue trend</p>
-          <p className="text-2xl font-semibold tracking-tight">
-            $110.8k <span className="text-sm text-emerald-500">+12.6%</span>
-          </p>
+          <CardDescription>Revenue trend</CardDescription>
+          <CardTitle className="text-2xl">
+            $110.8k{" "}
+            <span className="text-sm font-medium text-emerald-500">+12.6%</span>
+          </CardTitle>
         </div>
         <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
           Last 7 months
         </span>
-      </div>
-      <div className="h-64">
+      </CardHeader>
+      <CardContent className="h-64 pt-4">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <defs>
@@ -78,12 +86,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
             />
           </AreaChart>
         </ResponsiveContainer>
-      </div>
-    </section>
+      </CardContent>
+    </Card>
   );
 }
-
-
-
-
-

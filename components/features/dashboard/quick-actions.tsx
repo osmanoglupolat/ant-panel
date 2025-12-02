@@ -3,6 +3,13 @@
 import { ArrowUpRight, Calendar, MailPlus, Share2 } from "lucide-react";
 
 import type { QuickAction } from "@/lib/types/dashboard";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type QuickActionsProps = {
   actions: QuickAction[];
@@ -12,17 +19,15 @@ const icons = [Share2, MailPlus, Calendar];
 
 export function QuickActions({ actions }: QuickActionsProps) {
   return (
-    <section className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <header className="mb-4 flex items-center justify-between">
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div>
-          <p className="text-sm text-muted-foreground">Quick actions</p>
-          <h2 className="text-lg font-semibold text-foreground">
-            Keep work moving
-          </h2>
+          <CardDescription>Quick actions</CardDescription>
+          <CardTitle className="text-lg">Keep work moving</CardTitle>
         </div>
         <ArrowUpRight className="h-5 w-5 text-muted-foreground" />
-      </header>
-      <div className="space-y-3">
+      </CardHeader>
+      <CardContent className="space-y-3 pt-6">
         {actions.map((action, index) => {
           const ActionIcon = icons[index] ?? Share2;
           return (
@@ -42,8 +47,8 @@ export function QuickActions({ actions }: QuickActionsProps) {
             </button>
           );
         })}
-      </div>
-    </section>
+      </CardContent>
+    </Card>
   );
 }
 

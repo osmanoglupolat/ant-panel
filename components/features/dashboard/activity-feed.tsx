@@ -4,6 +4,13 @@ import { CheckCircle2, Clock, Flag } from "lucide-react";
 
 import type { ActivityItem } from "@/lib/types/dashboard";
 import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type ActivityFeedProps = {
   items: ActivityItem[];
@@ -11,19 +18,17 @@ type ActivityFeedProps = {
 
 export function ActivityFeed({ items }: ActivityFeedProps) {
   return (
-    <section className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <header className="flex items-center justify-between pb-4">
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div>
-          <p className="text-sm text-muted-foreground">Activity</p>
-          <h2 className="text-lg font-semibold text-foreground">
-            Operational timeline
-          </h2>
+          <CardDescription>Activity</CardDescription>
+          <CardTitle className="text-lg">Operational timeline</CardTitle>
         </div>
         <button className="text-sm font-medium text-primary underline-offset-4 hover:underline">
           View all
         </button>
-      </header>
-      <ol className="space-y-4 text-sm">
+      </CardHeader>
+      <CardContent className="space-y-4 pt-6 text-sm">
         {items.map((item) => (
           <li key={item.id} className="flex items-start gap-3">
             <StatusIcon status={item.status} />
@@ -34,8 +39,8 @@ export function ActivityFeed({ items }: ActivityFeedProps) {
             </div>
           </li>
         ))}
-      </ol>
-    </section>
+      </CardContent>
+    </Card>
   );
 }
 
