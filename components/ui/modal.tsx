@@ -153,7 +153,7 @@ export const Modal: React.FC<ModalProps> = ({
       <SheetContent
         side={side}
         className={cn(
-          "z-100 flex h-full w-full max-w-full bg-transparent p-0 !border-0 !shadow-none",
+          "z-50 flex h-full w-full max-w-full bg-transparent p-0 !border-0 !shadow-none",
           { "sm:max-w-full": resizable }
         )}
         overlayProps={{

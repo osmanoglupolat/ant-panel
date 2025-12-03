@@ -45,6 +45,7 @@ export type DashboardData = {
   segmentShare: SegmentShare[];
   activity: ActivityItem[];
   quickActions: QuickAction[];
+  users: import("./users").UserRecord[];
 };
 
 

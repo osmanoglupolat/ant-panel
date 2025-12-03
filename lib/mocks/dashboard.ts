@@ -7,6 +7,7 @@ import type {
   SegmentShare,
   StatCard,
 } from "@/lib/types/dashboard";
+import type { UserRecord } from "@/lib/types/users";
 
 const stats: StatCard[] = [
   {
@@ -115,6 +116,53 @@ const quickActions: QuickAction[] = [
   },
 ];
 
+const users: UserRecord[] = [
+  {
+    id: "usr-1",
+    name: "Sarah Tan",
+    email: "sarah@antpanel.dev",
+    role: "Owner",
+    status: "active",
+    lastActive: "2m ago",
+    avatar: "/avatars/shadcn.jpg",
+    location: "Istanbul, TR",
+    plan: "Scale",
+  },
+  {
+    id: "usr-2",
+    name: "Ethan Zhou",
+    email: "ethan@antpanel.dev",
+    role: "Admin",
+    status: "active",
+    lastActive: "18m ago",
+    avatar: "/avatars/shadcn.jpg",
+    location: "Berlin, DE",
+    plan: "Scale",
+  },
+  {
+    id: "usr-3",
+    name: "Maya Uzun",
+    email: "maya@antpanel.dev",
+    role: "Editor",
+    status: "invited",
+    lastActive: "—",
+    avatar: "/avatars/shadcn.jpg",
+    location: "Ankara, TR",
+    plan: "Growth",
+  },
+  {
+    id: "usr-4",
+    name: "David Lang",
+    email: "david@antpanel.dev",
+    role: "Viewer",
+    status: "disabled",
+    lastActive: "Yesterday",
+    avatar: "/avatars/shadcn.jpg",
+    location: "London, UK",
+    plan: "Legacy",
+  },
+];
+
 export const dashboardData: DashboardData = {
   stats,
   revenueTrend,
@@ -122,6 +170,7 @@ export const dashboardData: DashboardData = {
   segmentShare,
   activity,
   quickActions,
+  users,
 };
 
 
