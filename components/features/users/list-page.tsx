@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
@@ -52,7 +53,11 @@ export function UsersPage() {
             className="flex flex-col gap-2"
             onSubmit={(event) => {
               event.preventDefault();
-              closeModal();
+              // Simulate API call
+              setTimeout(() => {
+                toast.success(`User ${selectedUser.name} updated successfully!`);
+                closeModal();
+              }, 500);
             }}
           >
             <div className="space-y-2">

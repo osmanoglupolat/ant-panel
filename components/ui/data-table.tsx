@@ -60,6 +60,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DataTableToolbar } from "./data-table-toolbar";
+import { EmptyState } from "./empty-state";
+import { Users } from "lucide-react";
 
 // Create a separate component for the drag handle
 export function DragHandle({ id }: { id: UniqueIdentifier }) {
@@ -234,11 +236,12 @@ export function DataTable({
                   </SortableContext>
                 ) : (
                   <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center"
-                    >
-                      No results.
+                    <TableCell colSpan={columns.length} className="h-64 p-0">
+                      <EmptyState
+                        icon={Users}
+                        title="No results found"
+                        description="Try adjusting your search or filter to find what you're looking for."
+                      />
                     </TableCell>
                   </TableRow>
                 )}

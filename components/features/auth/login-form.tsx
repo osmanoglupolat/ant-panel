@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth/auth-context";
 import { DEMO_CREDENTIALS } from "@/lib/auth/mock-auth";
+import { toast } from "sonner";
 
 type FieldErrors = Partial<Record<"email" | "password", string>>;
 
@@ -69,13 +70,15 @@ export function LoginForm() {
     setIsSubmitting(true);
     try {
       await signIn(formValues);
+      toast.success("Welcome back! Redirecting to dashboard...");
       router.push(redirectPath ?? "/");
     } catch (error) {
-      setFormError(
+      const errorMessage =
         error instanceof Error
           ? error.message
-          : "Unable to sign in right now. Please try again."
-      );
+          : "Unable to sign in right now. Please try again.";
+      setFormError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
