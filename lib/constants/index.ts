@@ -31,6 +31,7 @@ export const ROUTES = {
   CALENDAR: "/calendar",
   FORMS: "/forms",
   BLANK_PAGE: "/blank-page",
+  RESET_PASSWORD: "/reset-password",
   // UI Routes
   UI_FORMS_COMPONENTS: "/ui/forms/components",
   UI_FORMS_LAYOUTS: "/ui/forms/layouts",

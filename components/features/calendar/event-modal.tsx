@@ -35,36 +35,45 @@ export function EventModal({
   onSubmit,
   onDelete,
 }: EventModalProps) {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    start: slotInfo?.start || new Date(),
-    end: slotInfo?.end || new Date(),
-    allDay: false,
-    location: "",
-  });
-
-  useEffect(() => {
+  // Initialize form data based on event or slotInfo
+  const getInitialFormData = () => {
     if (event) {
-      setFormData({
+      return {
         title: event.title,
         description: event.description || "",
         start: event.start,
         end: event.end,
         allDay: event.allDay || false,
         location: event.location || "",
-      });
-    } else if (slotInfo) {
-      setFormData({
+      };
+    }
+    if (slotInfo) {
+      return {
         title: "",
         description: "",
         start: slotInfo.start,
         end: slotInfo.end,
         allDay: false,
         location: "",
-      });
+      };
     }
-  }, [event, slotInfo]);
+    return {
+      title: "",
+      description: "",
+      start: new Date(),
+      end: new Date(Date.now() + 60 * 60 * 1000),
+      allDay: false,
+      location: "",
+    };
+  };
+
+  const [formData, setFormData] = useState(getInitialFormData);
+
+  // Update form data when event or slotInfo changes
+  React.useEffect(() => {
+    setFormData(getInitialFormData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [event?.id, slotInfo?.start?.getTime()]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
