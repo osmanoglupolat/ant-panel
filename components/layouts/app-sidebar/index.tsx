@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -15,75 +17,41 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import {
-  IconActivityHeartbeat,
-  IconArchive,
-  IconBackground,
-  IconBellRinging,
-  IconBrandGoogle,
-  IconBrandMeta,
-  IconBrandNpm,
-  IconBrandOpenai,
-  IconBug,
+  IconCalendar,
   IconChartBar,
   IconChevronRight,
-  IconCloud,
-  IconDatabase,
+  IconCreditCard,
   IconFileText,
-  IconFolder,
-  IconFolders,
-  IconGitCommit,
-  IconGitMerge,
-  IconGitPullRequest,
   IconHome,
-  IconKey,
-  IconLockExclamation,
-  IconLockPassword,
-  IconLogout,
-  IconNorthStar,
-  IconPackageExport,
-  IconPackages,
-  IconPasswordFingerprint,
-  IconPlayerPlay,
-  IconScanEye,
+  IconLayoutKanban,
   IconSettings,
   IconShieldLock,
-  IconStar,
-  IconTarget,
-  IconTerminal2,
-  IconUser,
-  IconUserPlus,
-  IconWebhook,
+  IconUsers,
   IconX,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
 import { NavUser } from "../nav-user";
+import { ROUTES } from "@/lib/constants";
+import { dashboardData } from "@/lib/mocks/dashboard";
+
+// Get user from dashboard data (first user as current user for demo)
+const currentUser = dashboardData.users[0] || {
+  name: "Admin User",
+  email: "admin@antpanel.dev",
+  avatar: "/avatars/shadcn.jpg",
+};
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: currentUser.name,
+    email: currentUser.email,
+    avatar: currentUser.avatar || "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "OpenAI",
-      logo: IconBrandOpenai,
-      plan: "Enterprise",
-    },
-    {
-      name: "Anthropic",
-      logo: IconNorthStar,
+      name: "Ant Panel",
+      logo: IconHome,
       plan: "Pro",
-    },
-    {
-      name: "Google",
-      logo: IconBrandGoogle,
-      plan: "Free",
-    },
-    {
-      name: "Meta",
-      logo: IconBrandMeta,
-      plan: "Free",
     },
   ],
 };
@@ -106,260 +74,121 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
   {
-    id: "overview",
-    label: "Overview",
+    id: "dashboard",
+    label: "Dashboard",
     icon: IconHome,
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "dashboard",
-        label: "Dashboard",
-        icon: IconChartBar,
-        description: "Project overview and activity",
-        route: "/overview/dashboard",
-      },
-      {
-        id: "activity",
-        label: "Activity",
-        icon: IconActivityHeartbeat,
-        description: "Recent commits and changes",
-        route: "/overview/activity",
-      },
-      {
-        id: "insights",
-        label: "Insights",
-        icon: IconTarget,
-        description: "Code analytics and metrics",
-        route: "/overview/insights",
-      },
-    ],
+    hasSubItems: false,
+    route: ROUTES.DASHBOARD,
   },
   {
-    id: "repositories",
-    label: "Repositories",
-    icon: IconFolders,
-    badge: "12",
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "all-repos",
-        label: "All Repositories",
-        icon: IconFolder,
-        description: "Browse all your repositories",
-        route: "/repositories",
-      },
-      {
-        id: "starred",
-        label: "Starred",
-        icon: IconStar,
-        description: "Your starred repositories",
-        route: "/repositories/starred",
-      },
-      {
-        id: "archived",
-        label: "Archived",
-        icon: IconArchive,
-        description: "Archived repositories",
-        route: "/repositories/archived",
-      },
-    ],
+    id: "users",
+    label: "Users",
+    icon: IconUsers,
+    hasSubItems: false,
+    route: ROUTES.USERS,
   },
   {
-    id: "pull-requests",
-    label: "Pull Requests",
-    icon: IconGitPullRequest,
-    badge: "3",
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "open-prs",
-        label: "Open",
-        icon: IconGitPullRequest,
-        description: "Open pull requests",
-        route: "/pull-requests/open",
-      },
-      {
-        id: "review-requests",
-        label: "Review Requests",
-        icon: IconScanEye,
-        description: "PRs awaiting your review",
-        route: "/pull-requests/review",
-      },
-      {
-        id: "merged",
-        label: "Merged",
-        icon: IconGitMerge,
-        description: "Recently merged PRs",
-        route: "/pull-requests/merged",
-      },
-    ],
+    id: "kanban",
+    label: "Kanban",
+    icon: IconLayoutKanban,
+    hasSubItems: false,
+    route: ROUTES.KANBAN,
   },
   {
-    id: "issues",
-    label: "Issues",
-    icon: IconBug,
-    badge: "7",
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "open-issues",
-        label: "Open Issues",
-        icon: IconBug,
-        description: "Active issues and bugs",
-        route: "/issues/open",
-      },
-      {
-        id: "assigned",
-        label: "Assigned to Me",
-        icon: IconUserPlus,
-        description: "Issues assigned to you",
-        route: "/issues/assigned",
-      },
-      {
-        id: "created",
-        label: "Created by Me",
-        icon: IconGitCommit,
-        description: "Issues you've created",
-        route: "/issues/created",
-      },
-    ],
+    id: "calendar",
+    label: "Calendar",
+    icon: IconCalendar,
+    hasSubItems: false,
+    route: ROUTES.CALENDAR,
   },
   {
-    id: "actions",
-    label: "Actions",
-    icon: IconBackground,
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "workflows",
-        label: "Workflows",
-        icon: IconPlayerPlay,
-        description: "CI/CD workflows and pipelines",
-        route: "/actions/workflows",
-      },
-      {
-        id: "runners",
-        label: "Runners",
-        icon: IconTerminal2,
-        description: "Self-hosted runners",
-        route: "/actions/runners",
-      },
-      {
-        id: "deployments",
-        label: "Deployments",
-        icon: IconCloud,
-        description: "Deployment history",
-        route: "/actions/deployments",
-      },
-    ],
-  },
-  {
-    id: "packages",
-    label: "Packages",
-    icon: IconPackages,
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "published",
-        label: "Published",
-        icon: IconPackageExport,
-        description: "Your published packages",
-        route: "/packages/published",
-      },
-      {
-        id: "container-registry",
-        label: "Container Registry",
-        icon: IconDatabase,
-        description: "Docker images and containers",
-        route: "/packages/containers",
-      },
-      {
-        id: "npm-packages",
-        label: "npm Packages",
-        icon: IconBrandNpm,
-        description: "Node.js packages",
-        route: "/packages/npm",
-      },
-    ],
-  },
-  {
-    id: "security",
-    label: "Security",
-    icon: IconLockPassword,
-    badge: "2",
-    hasSubItems: true,
-    subItems: [
-      {
-        id: "alerts",
-        label: "Security Alerts",
-        icon: IconLockExclamation,
-        description: "Vulnerability alerts",
-        route: "/security/alerts",
-      },
-      {
-        id: "advisories",
-        label: "Advisories",
-        icon: IconShieldLock,
-        description: "Security advisories",
-        route: "/security/advisories",
-      },
-      {
-        id: "secrets",
-        label: "Secrets",
-        icon: IconPasswordFingerprint,
-        description: "Repository secrets",
-        route: "/security/secrets",
-      },
-    ],
+    id: "forms",
+    label: "Forms",
+    icon: IconFileText,
+    hasSubItems: false,
+    route: ROUTES.FORMS,
   },
   {
     id: "settings",
     label: "Settings",
     icon: IconSettings,
     hasSubItems: true,
+    route: ROUTES.SETTINGS,
     subItems: [
       {
-        id: "profile",
-        label: "Profile",
-        icon: IconUser,
-        description: "Your profile settings",
-        route: "/settings/profile",
+        id: "general",
+        label: "General",
+        icon: IconSettings,
+        description: "General account settings",
+        route: ROUTES.SETTINGS_GENERAL,
       },
       {
-        id: "notifications",
-        label: "Notifications",
-        icon: IconBellRinging,
-        description: "Notification preferences",
-        route: "/settings/notifications",
+        id: "team",
+        label: "Team",
+        icon: IconUsers,
+        description: "Team members and roles",
+        route: ROUTES.SETTINGS_TEAM,
       },
       {
-        id: "webhooks",
-        label: "Webhooks",
-        icon: IconWebhook,
-        description: "Webhook configurations",
-        route: "/settings/webhooks",
+        id: "billing",
+        label: "Billing",
+        icon: IconCreditCard,
+        description: "Billing and subscription",
+        route: ROUTES.SETTINGS_BILLING,
       },
       {
-        id: "api-keys",
-        label: "API Keys",
-        icon: IconKey,
-        description: "Personal access tokens",
-        route: "/settings/api-keys",
+        id: "security",
+        label: "Security",
+        icon: IconShieldLock,
+        description: "Security and password settings",
+        route: ROUTES.SETTINGS_SECURITY,
       },
     ],
-  },
-  {
-    id: "docs",
-    label: "Documentation",
-    icon: IconFileText,
-    hasSubItems: false,
-    route: "/docs",
   },
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [activeItem, setActiveItem] = useState<string | null>();
+  const pathname = usePathname();
+  const [activeItem, setActiveItem] = useState<string | null>(null);
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
+
+  // Determine active item based on pathname
+  useEffect(() => {
+    // Check if pathname matches any route
+    for (const item of sidebarItems) {
+      if (item.route && pathname === item.route) {
+        setActiveItem(item.id);
+        setSelectedSubItem(null);
+        return;
+      }
+      if (item.hasSubItems && item.subItems) {
+        for (const subItem of item.subItems) {
+          if (subItem.route && pathname === subItem.route) {
+            setActiveItem(item.id);
+            setSelectedSubItem(subItem.id);
+            return;
+          }
+        }
+        // Check if pathname starts with settings (for settings parent item)
+        if (item.id === "settings" && pathname?.startsWith("/settings")) {
+          setActiveItem(item.id);
+          // Find matching sub-item
+          const matchingSubItem = item.subItems?.find(
+            (subItem) => subItem.route === pathname
+          );
+          if (matchingSubItem) {
+            setSelectedSubItem(matchingSubItem.id);
+          }
+          return;
+        }
+      }
+    }
+    // Default to dashboard if pathname is root
+    if (pathname === "/") {
+      setActiveItem("dashboard");
+      setSelectedSubItem(null);
+    }
+  }, [pathname]);
 
   const activeItemData = sidebarItems.find((item) => item.id === activeItem);
 
@@ -370,20 +199,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       if (isActive) {
         setSelectedSubItem(null);
       }
-    } else {
-      if (activeItem) {
-        setActiveItem(null);
-        setSelectedSubItem(null);
-      }
-      console.log(`[v0] Navigating to: ${item.route}`);
     }
+    // Navigation is handled by Link component
   };
 
-  const handleSubItemClick = (subItem: { id: string; route?: string }) => {
-    setSelectedSubItem(selectedSubItem === subItem.id ? null : subItem.id);
-    if (subItem.route) {
-      console.log(`[v0] Navigating to: ${subItem.route}`);
-    }
+  const handleSubItemClick = () => {
+    // Navigation is handled by Link component
   };
 
   return (
@@ -415,34 +236,42 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     />
                   );
 
+                  // Check if current route is active
+                  const isRouteActive =
+                    (item.route && pathname === item.route) ||
+                    (item.hasSubItems &&
+                      pathname?.startsWith(item.route || ""));
+
                   return (
                     <SidebarMenuItem key={item.id}>
-                      <SidebarMenuButton
-                        isActive={isActive}
-                        className="w-full h-10 px-3"
-                        onClick={() => handleItemClick(item)}
-                      >
-                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                          <Icon className="h-4 w-4 shrink-0" />
-                          <span className="truncate">{item.label}</span>
-                        </div>
-                        <div className="flex items-center gap-1 shrink-0 ml-auto min-w-fit">
-                          {(item.badge || item.hasSubItems) &&
-                            (item.badge ? (
-                              <SidebarMenuBadge
-                                className={cn(
-                                  "min-w-fit",
-                                  item.hasSubItems && "gap-x-3"
-                                )}
-                              >
-                                {item.badge}
-                                {item.hasSubItems && chevronIndicator}
-                              </SidebarMenuBadge>
-                            ) : (
-                              chevronIndicator
-                            ))}
-                        </div>
-                      </SidebarMenuButton>
+                      {item.route && !item.hasSubItems ? (
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isRouteActive}
+                          className="w-full h-10 px-3"
+                        >
+                          <Link href={item.route}>
+                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                              <Icon className="h-4 w-4 shrink-0" />
+                              <span className="truncate">{item.label}</span>
+                            </div>
+                          </Link>
+                        </SidebarMenuButton>
+                      ) : (
+                        <SidebarMenuButton
+                          isActive={isActive}
+                          className="w-full h-10 px-3"
+                          onClick={() => handleItemClick(item)}
+                        >
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <Icon className="h-4 w-4 shrink-0" />
+                            <span className="truncate">{item.label}</span>
+                          </div>
+                          <div className="flex items-center gap-1 shrink-0 ml-auto min-w-fit">
+                            {item.hasSubItems && chevronIndicator}
+                          </div>
+                        </SidebarMenuButton>
+                      )}
                     </SidebarMenuItem>
                   );
                 })}
@@ -479,26 +308,44 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                   {activeItemData.subItems.map((subItem) => {
                     const SubIcon = subItem.icon;
-                    const isSelected = selectedSubItem === subItem.id;
+                    const isSelected = pathname === subItem.route;
 
                     return (
                       <SidebarMenuItem key={subItem.id}>
-                        <SidebarMenuButton
-                          isActive={isSelected}
-                          className="w-full justify-start gap-3 h-auto py-2 px-3"
-                          onClick={() => handleSubItemClick(subItem)}
-                        >
-                          <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
-
-                          <div className="flex-1 text-left min-w-0">
-                            <div className="font-medium">{subItem.label}</div>
-                            {subItem.description && (
-                              <div className="text-xs text-muted-foreground mt-0.5">
-                                {subItem.description}
+                        {subItem.route ? (
+                          <SidebarMenuButton
+                            asChild
+                            isActive={isSelected}
+                            className="w-full justify-start gap-3 h-auto py-2 px-3"
+                          >
+                            <Link href={subItem.route}>
+                              <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
+                              <div className="flex-1 text-left min-w-0">
+                                <div className="font-medium">{subItem.label}</div>
+                                {subItem.description && (
+                                  <div className="text-xs text-muted-foreground mt-0.5">
+                                    {subItem.description}
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                        </SidebarMenuButton>
+                            </Link>
+                          </SidebarMenuButton>
+                        ) : (
+                          <SidebarMenuButton
+                            isActive={isSelected}
+                            className="w-full justify-start gap-3 h-auto py-2 px-3"
+                          >
+                            <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
+                            <div className="flex-1 text-left min-w-0">
+                              <div className="font-medium">{subItem.label}</div>
+                              {subItem.description && (
+                                <div className="text-xs text-muted-foreground mt-0.5">
+                                  {subItem.description}
+                                </div>
+                              )}
+                            </div>
+                          </SidebarMenuButton>
+                        )}
                       </SidebarMenuItem>
                     );
                   })}

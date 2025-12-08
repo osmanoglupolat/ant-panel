@@ -4,7 +4,7 @@ import { SettingsLayout } from "@/components/features/settings/layout";
 
 export const metadata: Metadata = {
   title: "Settings",
-  description: "Manage team, billing, and security preferences.",
+  description: "Manage your account settings, team members, billing information, and security preferences. Configure workspace settings and user permissions.",
 };
 
 export default function SettingsPage() {

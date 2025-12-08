@@ -1,47 +1,77 @@
+import { ROUTES } from "@/lib/constants";
+
 export const navItems = [
   {
     title: "Dashboard",
-    url: "/admin/overview",
+    url: ROUTES.DASHBOARD,
     icon: "dashboard",
     isActive: false,
-    shortcut: ["d", "d"],
-    items: [], // Empty array as there are no child items for Dashboard
+    shortcut: ["d"],
+    items: [],
   },
   {
-    title: "Product",
-    url: "/admin/product",
-    icon: "product",
-    shortcut: ["p", "p"],
+    title: "Users",
+    url: ROUTES.USERS,
+    icon: "users",
     isActive: false,
-    items: [], // No child items
-  },
-  {
-    title: "Account",
-    url: "#", // Placeholder as there is no direct link for the parent
-    icon: "billing",
-    isActive: false,
-
-    items: [
-      {
-        title: "Profile",
-        url: "/admin/profile",
-        icon: "userPen",
-        shortcut: ["m", "m"],
-      },
-      {
-        title: "Login",
-        shortcut: ["l", "l"],
-        url: "/",
-        icon: "login",
-      },
-    ],
+    shortcut: ["u"],
+    items: [],
   },
   {
     title: "Kanban",
-    url: "/admin/kanban",
+    url: ROUTES.KANBAN,
     icon: "kanban",
-    shortcut: ["k", "k"],
     isActive: false,
-    items: [], // No child items
+    shortcut: ["k"],
+    items: [],
+  },
+  {
+    title: "Calendar",
+    url: ROUTES.CALENDAR,
+    icon: "calendar",
+    isActive: false,
+    shortcut: ["c"],
+    items: [],
+  },
+  {
+    title: "Forms",
+    url: ROUTES.FORMS,
+    icon: "form",
+    isActive: false,
+    shortcut: ["f"],
+    items: [],
+  },
+  {
+    title: "Settings",
+    url: ROUTES.SETTINGS,
+    icon: "settings",
+    isActive: false,
+    shortcut: ["s"],
+    items: [
+      {
+        title: "General",
+        url: ROUTES.SETTINGS_GENERAL,
+        icon: "settings",
+        shortcut: ["s", "g"],
+      },
+      {
+        title: "Team",
+        url: ROUTES.SETTINGS_TEAM,
+        icon: "users",
+        shortcut: ["s", "t"],
+      },
+      {
+        title: "Billing",
+        url: ROUTES.SETTINGS_BILLING,
+        icon: "billing",
+        shortcut: ["s", "b"],
+      },
+      {
+        title: "Security",
+        url: ROUTES.SETTINGS_SECURITY,
+        icon: "lock",
+        shortcut: ["s", "s"],
+      },
+    ],
   },
 ];
