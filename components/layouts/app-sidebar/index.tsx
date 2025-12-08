@@ -52,6 +52,9 @@ import {
   IconArrowsSort,
   IconFile,
   IconUpload,
+  IconKey,
+  IconAlertTriangle,
+  IconClock,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
 import { NavUser } from "../nav-user";
@@ -185,6 +188,79 @@ const sidebarItems: SidebarItem[] = [
     icon: IconFile,
     hasSubItems: false,
     route: ROUTES.BLANK_PAGE,
+  },
+  {
+    id: "pages",
+    label: "Pages",
+    icon: IconFileText,
+    hasSubItems: true,
+    subItems: [
+      {
+        id: "pages-authorization",
+        label: "Authorization",
+        icon: IconKey,
+        hasSubItems: true,
+        subItems: [
+          {
+            id: "pages-auth-login",
+            label: "Login",
+            icon: IconKey,
+            description: "Login page",
+            route: ROUTES.PAGES_AUTH_LOGIN,
+          },
+          {
+            id: "pages-auth-register",
+            label: "Register",
+            icon: IconKey,
+            description: "Register page",
+            route: ROUTES.PAGES_AUTH_REGISTER,
+          },
+          {
+            id: "pages-auth-forgot-password",
+            label: "Forgot Password",
+            icon: IconKey,
+            description: "Forgot password page",
+            route: ROUTES.PAGES_AUTH_FORGOT_PASSWORD,
+          },
+          {
+            id: "pages-auth-reset-password",
+            label: "Reset Password",
+            icon: IconKey,
+            description: "Reset password page",
+            route: ROUTES.PAGES_AUTH_RESET_PASSWORD,
+          },
+        ],
+      },
+      {
+        id: "pages-others",
+        label: "Others",
+        icon: IconFile,
+        hasSubItems: true,
+        subItems: [
+          {
+            id: "pages-others-error",
+            label: "Error",
+            icon: IconAlertTriangle,
+            description: "Error page",
+            route: ROUTES.PAGES_OTHERS_ERROR,
+          },
+          {
+            id: "pages-others-not-found",
+            label: "Not Found",
+            icon: IconAlertTriangle,
+            description: "404 page",
+            route: ROUTES.PAGES_OTHERS_NOT_FOUND,
+          },
+          {
+            id: "pages-others-coming-soon",
+            label: "Coming Soon",
+            icon: IconClock,
+            description: "Coming soon page",
+            route: ROUTES.PAGES_OTHERS_COMING_SOON,
+          },
+        ],
+      },
+    ],
   },
   {
     id: "ui",

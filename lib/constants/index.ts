@@ -55,6 +55,14 @@ export const ROUTES = {
   UI_COMPONENTS_TOAST: "/ui/components/toast",
   UI_COMPONENTS_SORTABLE: "/ui/components/sortable",
   UI_COMPONENTS_FILE_UPLOAD: "/ui/components/file-upload",
+  // Pages Routes
+  PAGES_AUTH_LOGIN: "/login",
+  PAGES_AUTH_REGISTER: "/register",
+  PAGES_AUTH_FORGOT_PASSWORD: "/forgot-password",
+  PAGES_AUTH_RESET_PASSWORD: "/reset-password",
+  PAGES_OTHERS_ERROR: "/error",
+  PAGES_OTHERS_NOT_FOUND: "/not-found",
+  PAGES_OTHERS_COMING_SOON: "/coming-soon",
 } as const;
 
 // User roles
