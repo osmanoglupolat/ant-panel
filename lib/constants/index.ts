@@ -30,6 +30,7 @@ export const ROUTES = {
   KANBAN: "/kanban",
   CALENDAR: "/calendar",
   FORMS: "/forms",
+  BLANK_PAGE: "/blank-page",
   // UI Routes
   UI_FORMS_COMPONENTS: "/ui/forms/components",
   UI_FORMS_LAYOUTS: "/ui/forms/layouts",

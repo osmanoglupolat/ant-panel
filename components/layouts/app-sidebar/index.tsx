@@ -50,6 +50,7 @@ import {
   IconTooltip,
   IconBell,
   IconArrowsSort,
+  IconFile,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
 import { NavUser } from "../nav-user";
@@ -176,6 +177,13 @@ const sidebarItems: SidebarItem[] = [
     icon: IconFileText,
     hasSubItems: false,
     route: ROUTES.FORMS,
+  },
+  {
+    id: "blank-page",
+    label: "Blank Page",
+    icon: IconFile,
+    hasSubItems: false,
+    route: ROUTES.BLANK_PAGE,
   },
   {
     id: "ui",
