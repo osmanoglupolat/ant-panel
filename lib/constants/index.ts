@@ -54,6 +54,7 @@ export const ROUTES = {
   UI_COMPONENTS_TOOLTIP: "/ui/components/tooltip",
   UI_COMPONENTS_TOAST: "/ui/components/toast",
   UI_COMPONENTS_SORTABLE: "/ui/components/sortable",
+  UI_COMPONENTS_FILE_UPLOAD: "/ui/components/file-upload",
 } as const;
 
 // User roles

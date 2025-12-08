@@ -51,6 +51,7 @@ import {
   IconBell,
   IconArrowsSort,
   IconFile,
+  IconUpload,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
 import { NavUser } from "../nav-user";
@@ -360,6 +361,13 @@ const sidebarItems: SidebarItem[] = [
             icon: IconArrowsSort,
             description: "Sortable lists",
             route: ROUTES.UI_COMPONENTS_SORTABLE,
+          },
+          {
+            id: "components-file-upload",
+            label: "File Upload",
+            icon: IconUpload,
+            description: "File upload component",
+            route: ROUTES.UI_COMPONENTS_FILE_UPLOAD,
           },
         ],
       },

@@ -407,10 +407,10 @@ export function FileUpload({
                       <Button
                         type="button"
                         variant="ghost"
-                        size="icon-sm"
+                        size="icon"
                         onClick={() => removeFile(file.id)}
                         disabled={disabled}
-                        className="shrink-0"
+                        className="shrink-0 h-8 w-8"
                       >
                         <IconX className="h-4 w-4" />
                       </Button>
