@@ -19,14 +19,18 @@ import { cn } from "@/lib/utils";
 import {
   IconCalendar,
   IconChartBar,
+  IconChartPie,
   IconChevronRight,
   IconCreditCard,
   IconFileText,
   IconHome,
+  IconLayoutDashboard,
   IconLayoutKanban,
+  IconShoppingCart,
   IconSettings,
   IconShieldLock,
   IconUsers,
+  IconWallet,
   IconX,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
@@ -76,9 +80,46 @@ const sidebarItems: SidebarItem[] = [
   {
     id: "dashboard",
     label: "Dashboard",
-    icon: IconHome,
-    hasSubItems: false,
-    route: ROUTES.DASHBOARD,
+    icon: IconLayoutDashboard,
+    hasSubItems: true,
+    route: ROUTES.DASHBOARD_DEFAULT,
+    subItems: [
+      {
+        id: "default",
+        label: "Default",
+        icon: IconHome,
+        description: "Executive overview",
+        route: ROUTES.DASHBOARD_DEFAULT,
+      },
+      {
+        id: "analytics",
+        label: "Analytics",
+        icon: IconChartBar,
+        description: "Analytics and insights",
+        route: ROUTES.DASHBOARD_ANALYTICS,
+      },
+      {
+        id: "ecommerce",
+        label: "Ecommerce",
+        icon: IconShoppingCart,
+        description: "E-commerce metrics",
+        route: ROUTES.DASHBOARD_ECOMMERCE,
+      },
+      {
+        id: "crm",
+        label: "CRM",
+        icon: IconUsers,
+        description: "Customer relationships",
+        route: ROUTES.DASHBOARD_CRM,
+      },
+      {
+        id: "finance",
+        label: "Finance",
+        icon: IconWallet,
+        description: "Financial overview",
+        route: ROUTES.DASHBOARD_FINANCE,
+      },
+    ],
   },
   {
     id: "users",
@@ -169,6 +210,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             return;
           }
         }
+        // Check if pathname starts with dashboard (for dashboard parent item)
+        if (
+          item.id === "dashboard" &&
+          (pathname?.startsWith("/dashboard") || pathname === "/")
+        ) {
+          setActiveItem(item.id);
+          // Find matching sub-item
+          const matchingSubItem = item.subItems?.find(
+            (subItem) => subItem.route === pathname
+          );
+          if (matchingSubItem) {
+            setSelectedSubItem(matchingSubItem.id);
+          } else if (pathname === "/" || pathname === ROUTES.DASHBOARD) {
+            // Root path goes to default dashboard
+            setSelectedSubItem("default");
+          } else if (pathname?.startsWith("/dashboard/")) {
+            // If path starts with /dashboard/ but no exact match, default to "default"
+            setSelectedSubItem("default");
+          }
+          return;
+        }
         // Check if pathname starts with settings (for settings parent item)
         if (item.id === "settings" && pathname?.startsWith("/settings")) {
           setActiveItem(item.id);
@@ -184,9 +246,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       }
     }
     // Default to dashboard if pathname is root
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === ROUTES.DASHBOARD) {
       setActiveItem("dashboard");
-      setSelectedSubItem(null);
+      setSelectedSubItem("default");
     }
   }, [pathname]);
 

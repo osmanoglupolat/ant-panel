@@ -1,13 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { kanbanData } from "@/lib/mocks/kanban";
 import type { KanbanCard, KanbanBoard as KanbanBoardType } from "@/lib/types/kanban";
-import { KanbanBoard } from "@/components/features/kanban/kanban-board";
-import { TaskModal } from "@/components/features/kanban/task-modal";
 import { toast } from "sonner";
+
+// Dynamic imports for code splitting - only load when needed
+const KanbanBoard = dynamic(
+  () =>
+    import("@/components/features/kanban/kanban-board").then(
+      (mod) => mod.KanbanBoard
+    ),
+  {
+    loading: () => (
+      <div className="flex h-96 items-center justify-center rounded-lg border bg-card">
+        <div className="text-sm text-muted-foreground">Loading board...</div>
+      </div>
+    ),
+  }
+);
+
+const TaskModal = dynamic(
+  () =>
+    import("@/components/features/kanban/task-modal").then(
+      (mod) => mod.TaskModal
+    ),
+  { ssr: false }
+);
 
 export default function KanbanPage() {
   const [board, setBoard] = useState<KanbanBoardType>(kanbanData);

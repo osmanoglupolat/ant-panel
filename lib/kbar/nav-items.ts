@@ -3,11 +3,42 @@ import { ROUTES } from "@/lib/constants";
 export const navItems = [
   {
     title: "Dashboard",
-    url: ROUTES.DASHBOARD,
+    url: ROUTES.DASHBOARD_DEFAULT,
     icon: "dashboard",
     isActive: false,
     shortcut: ["d"],
-    items: [],
+    items: [
+      {
+        title: "Default",
+        url: ROUTES.DASHBOARD_DEFAULT,
+        icon: "dashboard",
+        shortcut: ["d", "d"],
+      },
+      {
+        title: "Analytics",
+        url: ROUTES.DASHBOARD_ANALYTICS,
+        icon: "analytics",
+        shortcut: ["d", "a"],
+      },
+      {
+        title: "Ecommerce",
+        url: ROUTES.DASHBOARD_ECOMMERCE,
+        icon: "ecommerce",
+        shortcut: ["d", "e"],
+      },
+      {
+        title: "CRM",
+        url: ROUTES.DASHBOARD_CRM,
+        icon: "crm",
+        shortcut: ["d", "c"],
+      },
+      {
+        title: "Finance",
+        url: ROUTES.DASHBOARD_FINANCE,
+        icon: "finance",
+        shortcut: ["d", "f"],
+      },
+    ],
   },
   {
     title: "Users",

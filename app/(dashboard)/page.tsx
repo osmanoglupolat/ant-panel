@@ -1,12 +1,6 @@
-import { Metadata } from "next";
-
-import { DashboardOverview } from "@/components/features/dashboard";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Executive overview of revenue, activity, and quick actions. Monitor your business metrics, track performance, and access quick actions from a centralized dashboard.",
-};
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/lib/constants";
 
 export default function DashboardPage() {
-  return <DashboardOverview />;
+  redirect(ROUTES.DASHBOARD_DEFAULT);
 }

@@ -1,18 +1,35 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 
 import { dashboardData } from "@/lib/mocks/dashboard";
 
 import { ActivityFeed } from "./activity-feed";
-import { ChannelBarChart } from "./charts/bar-chart";
-import { RevenueLineChart } from "./charts/line-chart";
-import { SegmentPieChart } from "./charts/pie-chart";
-import { NotificationsPanel } from "./notifications-panel";
 import { QuickActions } from "./quick-actions";
-import { RevenueChart } from "./revenue-chart";
 import { StatCards } from "./stat-cards";
 import { WidgetController, WidgetToggle } from "./widget-controller";
+
+// Dynamic imports for chart components - only load when needed
+const RevenueChart = dynamic(() => import("./revenue-chart").then((mod) => mod.RevenueChart), {
+  ssr: false,
+});
+const RevenueLineChart = dynamic(
+  () => import("./charts/line-chart").then((mod) => mod.RevenueLineChart),
+  { ssr: false }
+);
+const ChannelBarChart = dynamic(
+  () => import("./charts/bar-chart").then((mod) => mod.ChannelBarChart),
+  { ssr: false }
+);
+const SegmentPieChart = dynamic(
+  () => import("./charts/pie-chart").then((mod) => mod.SegmentPieChart),
+  { ssr: false }
+);
+const NotificationsPanel = dynamic(
+  () => import("./notifications-panel").then((mod) => mod.NotificationsPanel),
+  { ssr: false }
+);
 
 const DEFAULT_WIDGETS: WidgetToggle[] = [
   { id: "activity", label: "Activity feed", enabled: true },

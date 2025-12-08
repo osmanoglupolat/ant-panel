@@ -380,10 +380,12 @@
   - [ ] Test theme switching
   - [ ] Test responsive breakpoints
 - [ ] 🔴 Bug fixes
-- [ ] 🔴 Performance check
-  - [ ] Lighthouse audit (90+ score target)
-  - [ ] Bundle size analysis
-  - [ ] Image optimization check
+- [x] 🔴 Performance check
+  - [x] Next.js config optimizations (compression, image optimization, package imports)
+  - [x] Code splitting with dynamic imports
+  - [x] Bundle size analysis script (`pnpm analyze`)
+  - [x] Image optimization (Next.js Image component with AVIF/WebP)
+  - [ ] Lighthouse audit (90+ score target) - Manual testing required
 - [ ] 🔴 Accessibility audit
   - [ ] Keyboard navigation
   - [ ] Screen reader compatibility

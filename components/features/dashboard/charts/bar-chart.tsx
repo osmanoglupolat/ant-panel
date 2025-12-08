@@ -20,15 +20,21 @@ import {
 
 type BarChartProps = {
   data: ChannelBreakdown[];
+  title?: string;
+  description?: string;
 };
 
-export function ChannelBarChart({ data }: BarChartProps) {
+export function ChannelBarChart({ 
+  data, 
+  title = "Contribution by acquisition",
+  description = "Channel mix"
+}: BarChartProps) {
   return (
     <Card>
       <CardHeader className="pb-0">
-        <CardDescription>Channel mix</CardDescription>
+        <CardDescription>{description}</CardDescription>
         <CardTitle className="text-lg">
-          Contribution by acquisition
+          {title}
         </CardTitle>
       </CardHeader>
       <CardContent className="h-56 pt-4">

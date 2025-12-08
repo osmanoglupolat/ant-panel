@@ -20,6 +20,7 @@ import {
 
 type RevenueChartProps = {
   data: RevenuePoint[];
+  title?: string;
 };
 
 const currencyFormatter = (value: number) =>
@@ -30,19 +31,33 @@ const currencyFormatter = (value: number) =>
     maximumFractionDigits: 1,
   }).format(value);
 
-export function RevenueChart({ data }: RevenueChartProps) {
+export function RevenueChart({ data, title = "Revenue trend" }: RevenueChartProps) {
+  const latestValue = data[data.length - 1]?.revenue || 0;
+  const previousValue = data[data.length - 2]?.revenue || 0;
+  const changePercent = previousValue > 0 
+    ? ((latestValue - previousValue) / previousValue * 100).toFixed(1)
+    : "0";
+  const isPositive = parseFloat(changePercent) >= 0;
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-0">
         <div>
-          <CardDescription>Revenue trend</CardDescription>
+          <CardDescription>{title}</CardDescription>
           <CardTitle className="text-2xl">
-            $110.8k{" "}
-            <span className="text-sm font-medium text-emerald-500">+12.6%</span>
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+              notation: "compact",
+              maximumFractionDigits: 1,
+            }).format(latestValue)}{" "}
+            <span className={`text-sm font-medium ${isPositive ? "text-emerald-500" : "text-red-500"}`}>
+              {isPositive ? "+" : ""}{changePercent}%
+            </span>
           </CardTitle>
         </div>
         <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-          Last 7 months
+          Last {data.length} {data.length === 1 ? "period" : "periods"}
         </span>
       </CardHeader>
       <CardContent className="h-64 pt-4">

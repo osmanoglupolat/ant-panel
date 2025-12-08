@@ -1,13 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { calendarEvents } from "@/lib/mocks/calendar";
 import type { CalendarEvent } from "@/lib/types/calendar";
-import { CalendarViewComponent } from "@/components/features/calendar/calendar-view";
-import { EventModal } from "@/components/features/calendar/event-modal";
 import { toast } from "sonner";
+
+// Dynamic imports for code splitting - only load when needed
+const CalendarViewComponent = dynamic(
+  () =>
+    import("@/components/features/calendar/calendar-view").then(
+      (mod) => mod.CalendarViewComponent
+    ),
+  {
+    loading: () => (
+      <div className="flex h-96 items-center justify-center rounded-lg border bg-card">
+        <div className="text-sm text-muted-foreground">Loading calendar...</div>
+      </div>
+    ),
+  }
+);
+
+const EventModal = dynamic(
+  () =>
+    import("@/components/features/calendar/event-modal").then(
+      (mod) => mod.EventModal
+    ),
+  { ssr: false }
+);
 
 export default function CalendarPage() {
   const [events, setEvents] = useState<CalendarEvent[]>(calendarEvents);

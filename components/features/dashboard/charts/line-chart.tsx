@@ -20,14 +20,20 @@ import {
 
 type LineChartProps = {
   data: RevenuePoint[];
+  title?: string;
+  description?: string;
 };
 
-export function RevenueLineChart({ data }: LineChartProps) {
+export function RevenueLineChart({ 
+  data, 
+  title = "Pipeline conversion",
+  description = "Growth velocity"
+}: LineChartProps) {
   return (
     <Card>
       <CardHeader className="pb-0">
-        <CardDescription>Growth velocity</CardDescription>
-        <CardTitle className="text-lg">Pipeline conversion</CardTitle>
+        <CardDescription>{description}</CardDescription>
+        <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>
       <CardContent className="h-56 pt-4">
         <ResponsiveContainer width="100%" height="100%">

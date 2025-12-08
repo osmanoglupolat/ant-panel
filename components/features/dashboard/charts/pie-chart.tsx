@@ -13,16 +13,22 @@ import {
 
 type PieChartProps = {
   data: SegmentShare[];
+  title?: string;
+  description?: string;
 };
 
-const COLORS = ["#6366f1", "#0ea5e9", "#f97316", "#f43f5e"];
+const COLORS = ["#6366f1", "#0ea5e9", "#f97316", "#f43f5e", "#8b5cf6", "#06b6d4"];
 
-export function SegmentPieChart({ data }: PieChartProps) {
+export function SegmentPieChart({ 
+  data, 
+  title = "Revenue share by industry",
+  description = "Segments"
+}: PieChartProps) {
   return (
     <Card>
       <CardHeader className="pb-0">
-        <CardDescription>Segments</CardDescription>
-        <CardTitle className="text-lg">Revenue share by industry</CardTitle>
+        <CardDescription>{description}</CardDescription>
+        <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>
       <CardContent className="h-56 pt-4">
         <ResponsiveContainer width="100%" height="100%">
