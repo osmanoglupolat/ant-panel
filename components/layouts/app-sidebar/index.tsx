@@ -32,6 +32,24 @@ import {
   IconUsers,
   IconWallet,
   IconX,
+  IconPalette,
+  IconTable,
+  IconAlertCircle,
+  IconBadge,
+  IconClick,
+  IconCards,
+  IconPlayerPlay,
+  IconChartLine,
+  IconChevronDown,
+  IconMenu2,
+  IconEdit,
+  IconIcons,
+  IconForms,
+  IconWindow,
+  IconMessageCircle,
+  IconTooltip,
+  IconBell,
+  IconArrowsSort,
 } from "@tabler/icons-react";
 import { TeamSwitcher } from "@/components/layouts/team-switcher";
 import { NavUser } from "../nav-user";
@@ -67,6 +85,16 @@ interface SidebarItem {
   badge?: string;
   hasSubItems?: boolean;
   route?: string;
+  subItems?: SidebarSubItem[];
+}
+
+interface SidebarSubItem {
+  id: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  description?: string;
+  route?: string;
+  hasSubItems?: boolean;
   subItems?: {
     id: string;
     label: string;
@@ -150,6 +178,186 @@ const sidebarItems: SidebarItem[] = [
     route: ROUTES.FORMS,
   },
   {
+    id: "ui",
+    label: "UI",
+    icon: IconPalette,
+    hasSubItems: true,
+    route: ROUTES.UI_FORMS_COMPONENTS,
+    subItems: [
+      {
+        id: "forms",
+        label: "Forms",
+        icon: IconFileText,
+        hasSubItems: true,
+        subItems: [
+          {
+            id: "forms-components",
+            label: "Components",
+            icon: IconFileText,
+            description: "Form components",
+            route: ROUTES.UI_FORMS_COMPONENTS,
+          },
+          {
+            id: "forms-layouts",
+            label: "Layouts",
+            icon: IconLayoutDashboard,
+            description: "Form layouts",
+            route: ROUTES.UI_FORMS_LAYOUTS,
+          },
+          {
+            id: "forms-validation",
+            label: "Validation",
+            icon: IconAlertCircle,
+            description: "Form validation",
+            route: ROUTES.UI_FORMS_VALIDATION,
+          },
+          {
+            id: "forms-wizard",
+            label: "Wizard",
+            icon: IconChevronRight,
+            description: "Multi-step forms",
+            route: ROUTES.UI_FORMS_WIZARD,
+          },
+        ],
+      },
+      {
+        id: "data-tables",
+        label: "Data Tables",
+        icon: IconTable,
+        hasSubItems: true,
+        subItems: [
+          {
+            id: "data-tables-full",
+            label: "Full Page UI",
+            icon: IconTable,
+            description: "Full page tables",
+            route: ROUTES.UI_DATA_TABLES_FULL,
+          },
+          {
+            id: "data-tables-scrollable",
+            label: "Scrollable",
+            icon: IconTable,
+            description: "Scrollable tables",
+            route: ROUTES.UI_DATA_TABLES_SCROLLABLE,
+          },
+        ],
+      },
+      {
+        id: "components",
+        label: "Components",
+        icon: IconPalette,
+        hasSubItems: true,
+        subItems: [
+          {
+            id: "components-alerts",
+            label: "Alerts",
+            icon: IconAlertCircle,
+            description: "Alert components",
+            route: ROUTES.UI_COMPONENTS_ALERTS,
+          },
+          {
+            id: "components-badges",
+            label: "Badges",
+            icon: IconBadge,
+            description: "Badge components",
+            route: ROUTES.UI_COMPONENTS_BADGES,
+          },
+          {
+            id: "components-buttons",
+            label: "Buttons",
+            icon: IconClick,
+            description: "Button variants",
+            route: ROUTES.UI_COMPONENTS_BUTTONS,
+          },
+          {
+            id: "components-cards",
+            label: "Cards",
+            icon: IconCards,
+            description: "Card components",
+            route: ROUTES.UI_COMPONENTS_CARDS,
+          },
+          {
+            id: "components-carousel",
+            label: "Carousel",
+            icon: IconPlayerPlay,
+            description: "Carousel slider",
+            route: ROUTES.UI_COMPONENTS_CAROUSEL,
+          },
+          {
+            id: "components-charts",
+            label: "Charts",
+            icon: IconChartLine,
+            description: "Chart components",
+            route: ROUTES.UI_COMPONENTS_CHARTS,
+          },
+          {
+            id: "components-collapse",
+            label: "Collapse",
+            icon: IconChevronDown,
+            description: "Collapsible content",
+            route: ROUTES.UI_COMPONENTS_COLLAPSE,
+          },
+          {
+            id: "components-dropdowns",
+            label: "Dropdowns",
+            icon: IconMenu2,
+            description: "Dropdown menus",
+            route: ROUTES.UI_COMPONENTS_DROPDOWNS,
+          },
+          {
+            id: "components-editors",
+            label: "Editors",
+            icon: IconEdit,
+            description: "Rich text editors",
+            route: ROUTES.UI_COMPONENTS_EDITORS,
+          },
+          {
+            id: "components-input-groups",
+            label: "Input Groups",
+            icon: IconForms,
+            description: "Input group variants",
+            route: ROUTES.UI_COMPONENTS_INPUT_GROUPS,
+          },
+          {
+            id: "components-modal",
+            label: "Modal",
+            icon: IconWindow,
+            description: "Modal dialogs",
+            route: ROUTES.UI_COMPONENTS_MODAL,
+          },
+          {
+            id: "components-popover",
+            label: "Popover",
+            icon: IconMessageCircle,
+            description: "Popover components",
+            route: ROUTES.UI_COMPONENTS_POPOVER,
+          },
+          {
+            id: "components-tooltip",
+            label: "Tooltip",
+            icon: IconTooltip,
+            description: "Tooltip components",
+            route: ROUTES.UI_COMPONENTS_TOOLTIP,
+          },
+          {
+            id: "components-toast",
+            label: "Toast",
+            icon: IconBell,
+            description: "Toast notifications",
+            route: ROUTES.UI_COMPONENTS_TOAST,
+          },
+          {
+            id: "components-sortable",
+            label: "Sortable",
+            icon: IconArrowsSort,
+            description: "Sortable lists",
+            route: ROUTES.UI_COMPONENTS_SORTABLE,
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "settings",
     label: "Settings",
     icon: IconSettings,
@@ -192,6 +400,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
+  const [selectedNestedSubItem, setSelectedNestedSubItem] = useState<string | null>(null);
 
   // Determine active item based on pathname
   useEffect(() => {
@@ -204,9 +413,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       }
       if (item.hasSubItems && item.subItems) {
         for (const subItem of item.subItems) {
-          if (subItem.route && pathname === subItem.route) {
+          // Check if subItem has nested sub-items
+          if (subItem.hasSubItems && subItem.subItems) {
+            for (const nestedSubItem of subItem.subItems) {
+              if (nestedSubItem.route && pathname === nestedSubItem.route) {
+                setActiveItem(item.id);
+                setSelectedSubItem(subItem.id);
+                setSelectedNestedSubItem(nestedSubItem.id);
+                return;
+              }
+            }
+          } else if (subItem.route && pathname === subItem.route) {
             setActiveItem(item.id);
             setSelectedSubItem(subItem.id);
+            setSelectedNestedSubItem(null);
             return;
           }
         }
@@ -240,6 +460,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           );
           if (matchingSubItem) {
             setSelectedSubItem(matchingSubItem.id);
+          }
+          return;
+        }
+        // Check if pathname starts with /ui (for UI parent item with nested structure)
+        if (item.id === "ui" && pathname?.startsWith("/ui")) {
+          setActiveItem(item.id);
+          // Check nested sub-items
+          for (const subItem of item.subItems || []) {
+            if (subItem.hasSubItems && subItem.subItems) {
+              const matchingNestedSubItem = subItem.subItems.find(
+                (nestedSubItem) => nestedSubItem.route === pathname
+              );
+              if (matchingNestedSubItem) {
+                setSelectedSubItem(subItem.id);
+                setSelectedNestedSubItem(matchingNestedSubItem.id);
+                return;
+              }
+            } else if (subItem.route === pathname) {
+              setSelectedSubItem(subItem.id);
+              setSelectedNestedSubItem(null);
+              return;
+            }
           }
           return;
         }
@@ -370,17 +612,39 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                   {activeItemData.subItems.map((subItem) => {
                     const SubIcon = subItem.icon;
-                    const isSelected = pathname === subItem.route;
+                    const isSelectedSubItem = selectedSubItem === subItem.id;
+                    const hasNestedItems = subItem.hasSubItems && subItem.subItems && subItem.subItems.length > 0;
 
                     return (
-                      <SidebarMenuItem key={subItem.id}>
-                        {subItem.route ? (
-                          <SidebarMenuButton
-                            asChild
-                            isActive={isSelected}
-                            className="w-full justify-start gap-3 h-auto py-2 px-3"
-                          >
-                            <Link href={subItem.route}>
+                      <div key={subItem.id}>
+                        <SidebarMenuItem>
+                          {subItem.route && !hasNestedItems ? (
+                            <SidebarMenuButton
+                              asChild
+                              isActive={pathname === subItem.route}
+                              className="w-full justify-start gap-3 h-auto py-2 px-3"
+                            >
+                              <Link href={subItem.route}>
+                                <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
+                                <div className="flex-1 text-left min-w-0">
+                                  <div className="font-medium">{subItem.label}</div>
+                                  {subItem.description && (
+                                    <div className="text-xs text-muted-foreground mt-0.5">
+                                      {subItem.description}
+                                    </div>
+                                  )}
+                                </div>
+                              </Link>
+                            </SidebarMenuButton>
+                          ) : (
+                            <SidebarMenuButton
+                              isActive={isSelectedSubItem}
+                              className="w-full justify-start gap-3 h-auto py-2 px-3"
+                              onClick={() => {
+                                setSelectedSubItem(isSelectedSubItem ? null : subItem.id);
+                                setSelectedNestedSubItem(null);
+                              }}
+                            >
                               <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
                               <div className="flex-1 text-left min-w-0">
                                 <div className="font-medium">{subItem.label}</div>
@@ -390,25 +654,52 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                   </div>
                                 )}
                               </div>
-                            </Link>
-                          </SidebarMenuButton>
-                        ) : (
-                          <SidebarMenuButton
-                            isActive={isSelected}
-                            className="w-full justify-start gap-3 h-auto py-2 px-3"
-                          >
-                            <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
-                            <div className="flex-1 text-left min-w-0">
-                              <div className="font-medium">{subItem.label}</div>
-                              {subItem.description && (
-                                <div className="text-xs text-muted-foreground mt-0.5">
-                                  {subItem.description}
-                                </div>
+                              {hasNestedItems && (
+                                <IconChevronRight
+                                  className={cn(
+                                    "h-4 w-4 transition-transform shrink-0",
+                                    isSelectedSubItem && "rotate-90"
+                                  )}
+                                />
                               )}
-                            </div>
-                          </SidebarMenuButton>
+                            </SidebarMenuButton>
+                          )}
+                        </SidebarMenuItem>
+                        
+                        {/* Nested sub-items (3rd level) */}
+                        {hasNestedItems && isSelectedSubItem && (
+                          <div className="ml-4 border-l border-border pl-2">
+                            {subItem.subItems?.map((nestedSubItem) => {
+                              const NestedIcon = nestedSubItem.icon;
+                              const isSelectedNested = pathname === nestedSubItem.route;
+
+                              return (
+                                <SidebarMenuItem key={nestedSubItem.id}>
+                                  {nestedSubItem.route && (
+                                    <SidebarMenuButton
+                                      asChild
+                                      isActive={isSelectedNested}
+                                      className="w-full justify-start gap-3 h-auto py-2 px-3"
+                                    >
+                                      <Link href={nestedSubItem.route}>
+                                        <NestedIcon className="h-4 w-4 shrink-0 self-start mt-0.5" />
+                                        <div className="flex-1 text-left min-w-0">
+                                          <div className="text-sm font-medium">{nestedSubItem.label}</div>
+                                          {nestedSubItem.description && (
+                                            <div className="text-xs text-muted-foreground mt-0.5">
+                                              {nestedSubItem.description}
+                                            </div>
+                                          )}
+                                        </div>
+                                      </Link>
+                                    </SidebarMenuButton>
+                                  )}
+                                </SidebarMenuItem>
+                              );
+                            })}
+                          </div>
                         )}
-                      </SidebarMenuItem>
+                      </div>
                     );
                   })}
                 </SidebarMenu>

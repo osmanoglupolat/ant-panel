@@ -84,7 +84,7 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="flex h-full flex-col space-y-6">
+    <div className="flex flex-col space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Calendar</h1>
@@ -98,7 +98,7 @@ export default function CalendarPage() {
         </Button>
       </div>
 
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 min-h-[700px]">
         <CalendarViewComponent
           events={events}
           onSelectEvent={handleSelectEvent}

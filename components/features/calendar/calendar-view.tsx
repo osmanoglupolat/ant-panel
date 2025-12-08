@@ -82,7 +82,7 @@ export function CalendarViewComponent({
   };
 
   return (
-    <div className={cn("flex h-full flex-col space-y-4", className)}>
+    <div className={cn("flex flex-col space-y-4", className)}>
       {/* Toolbar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -96,7 +96,7 @@ export function CalendarViewComponent({
           </Button>
           <Button
             variant="outline"
-            size="icon"
+            size="sm"
             onClick={() => handleNavigate("TODAY")}
             aria-label="Today"
           >
@@ -136,13 +136,13 @@ export function CalendarViewComponent({
       </div>
 
       {/* Calendar */}
-      <div className="flex-1 rounded-lg border bg-card">
+      <div className="h-[700px] rounded-lg border bg-card overflow-hidden">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: "100%", padding: "16px" }}
+          style={{ height: "100%" }}
           view={view}
           onView={setView}
           date={currentDate}
@@ -152,6 +152,19 @@ export function CalendarViewComponent({
           selectable
           eventPropGetter={eventStyleGetter}
           popup
+          messages={{
+            next: "Next",
+            previous: "Previous",
+            today: "Today",
+            month: "Month",
+            week: "Week",
+            day: "Day",
+            agenda: "Agenda",
+            date: "Date",
+            time: "Time",
+            event: "Event",
+            noEventsInRange: "No events in this range",
+          }}
         />
       </div>
     </div>

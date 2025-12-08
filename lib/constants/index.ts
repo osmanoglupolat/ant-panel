@@ -30,6 +30,28 @@ export const ROUTES = {
   KANBAN: "/kanban",
   CALENDAR: "/calendar",
   FORMS: "/forms",
+  // UI Routes
+  UI_FORMS_COMPONENTS: "/ui/forms/components",
+  UI_FORMS_LAYOUTS: "/ui/forms/layouts",
+  UI_FORMS_VALIDATION: "/ui/forms/validation",
+  UI_FORMS_WIZARD: "/ui/forms/wizard",
+  UI_DATA_TABLES_FULL: "/ui/data-tables/full",
+  UI_DATA_TABLES_SCROLLABLE: "/ui/data-tables/scrollable",
+  UI_COMPONENTS_ALERTS: "/ui/components/alerts",
+  UI_COMPONENTS_BADGES: "/ui/components/badges",
+  UI_COMPONENTS_BUTTONS: "/ui/components/buttons",
+  UI_COMPONENTS_CARDS: "/ui/components/cards",
+  UI_COMPONENTS_CAROUSEL: "/ui/components/carousel",
+  UI_COMPONENTS_CHARTS: "/ui/components/charts",
+  UI_COMPONENTS_COLLAPSE: "/ui/components/collapse",
+  UI_COMPONENTS_DROPDOWNS: "/ui/components/dropdowns",
+  UI_COMPONENTS_EDITORS: "/ui/components/editors",
+  UI_COMPONENTS_INPUT_GROUPS: "/ui/components/input-groups",
+  UI_COMPONENTS_MODAL: "/ui/components/modal",
+  UI_COMPONENTS_POPOVER: "/ui/components/popover",
+  UI_COMPONENTS_TOOLTIP: "/ui/components/tooltip",
+  UI_COMPONENTS_TOAST: "/ui/components/toast",
+  UI_COMPONENTS_SORTABLE: "/ui/components/sortable",
 } as const;
 
 // User roles

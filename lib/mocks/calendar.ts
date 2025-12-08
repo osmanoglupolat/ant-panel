@@ -1,11 +1,16 @@
 import type { CalendarEvent } from "@/lib/types/calendar";
 
+// Generate events for current month and next month for better demo
+const now = new Date();
+const currentMonth = now.getMonth();
+const currentYear = now.getFullYear();
+
 export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-1",
     title: "Team Standup",
-    start: new Date(2024, 0, 15, 9, 0),
-    end: new Date(2024, 0, 15, 9, 30),
+    start: new Date(currentYear, currentMonth, 15, 9, 0),
+    end: new Date(currentYear, currentMonth, 15, 9, 30),
     resource: {
       id: "team",
       name: "Team Meeting",
@@ -16,8 +21,8 @@ export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-2",
     title: "Client Presentation",
-    start: new Date(2024, 0, 16, 14, 0),
-    end: new Date(2024, 0, 16, 15, 30),
+    start: new Date(currentYear, currentMonth, 16, 14, 0),
+    end: new Date(currentYear, currentMonth, 16, 15, 30),
     resource: {
       id: "client",
       name: "Client Meeting",
@@ -42,8 +47,8 @@ export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-3",
     title: "Code Review",
-    start: new Date(2024, 0, 17, 10, 0),
-    end: new Date(2024, 0, 17, 11, 0),
+    start: new Date(currentYear, currentMonth, 17, 10, 0),
+    end: new Date(currentYear, currentMonth, 17, 11, 0),
     resource: {
       id: "dev",
       name: "Development",
@@ -54,8 +59,8 @@ export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-4",
     title: "Product Launch",
-    start: new Date(2024, 0, 18, 11, 0),
-    end: new Date(2024, 0, 18, 12, 0),
+    start: new Date(currentYear, currentMonth, 18, 11, 0),
+    end: new Date(currentYear, currentMonth, 18, 12, 0),
     allDay: false,
     resource: {
       id: "product",
@@ -67,8 +72,8 @@ export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-5",
     title: "Sprint Planning",
-    start: new Date(2024, 0, 19, 13, 0),
-    end: new Date(2024, 0, 19, 15, 0),
+    start: new Date(currentYear, currentMonth, 19, 13, 0),
+    end: new Date(currentYear, currentMonth, 19, 15, 0),
     resource: {
       id: "team",
       name: "Team Meeting",
@@ -79,14 +84,36 @@ export const calendarEvents: CalendarEvent[] = [
   {
     id: "event-6",
     title: "All Hands Meeting",
-    start: new Date(2024, 0, 20, 10, 0),
-    end: new Date(2024, 0, 20, 11, 30),
+    start: new Date(currentYear, currentMonth, 20, 10, 0),
+    end: new Date(currentYear, currentMonth, 20, 11, 30),
     resource: {
       id: "company",
       name: "Company",
       color: "#ef4444",
     },
     location: "Main Conference Room",
+  },
+  {
+    id: "event-7",
+    title: "Weekly Sync",
+    start: new Date(currentYear, currentMonth, 22, 10, 0),
+    end: new Date(currentYear, currentMonth, 22, 11, 0),
+    resource: {
+      id: "team",
+      name: "Team Meeting",
+      color: "#3b82f6",
+    },
+  },
+  {
+    id: "event-8",
+    title: "Design Review",
+    start: new Date(currentYear, currentMonth, 23, 14, 0),
+    end: new Date(currentYear, currentMonth, 23, 15, 30),
+    resource: {
+      id: "design",
+      name: "Design",
+      color: "#ec4899",
+    },
   },
 ];
 
