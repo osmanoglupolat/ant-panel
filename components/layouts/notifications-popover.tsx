@@ -31,7 +31,7 @@ export function NotificationsPopover() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant="secondary"
+          variant="outline"
           size="icon"
           aria-label="View notifications"
           className="relative"

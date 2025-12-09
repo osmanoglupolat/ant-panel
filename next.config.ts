@@ -29,6 +29,9 @@ const nextConfig: NextConfig = {
 
   // Performance optimizations
   poweredByHeader: false,
+
+  // next development turbo mode indicators
+  devIndicators: false,
 };
 
 export default nextConfig;

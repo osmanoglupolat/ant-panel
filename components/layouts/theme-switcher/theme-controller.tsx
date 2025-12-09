@@ -28,7 +28,7 @@ export const ThemeController = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="secondary" size="icon">
+        <Button variant="outline" size="icon">
           <WandSparkles
             className="size-4 text-muted-foreground"
             strokeWidth={1.5}
@@ -56,7 +56,7 @@ export const ThemeController = () => {
           <div className="">
             <ThemeToggle />
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
               className="group/toggle size-8 text-muted-foreground"
               onClick={switchRandomTheme}
